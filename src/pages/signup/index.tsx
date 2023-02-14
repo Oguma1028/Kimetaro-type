@@ -23,12 +23,15 @@ import { FirebaseError } from '@firebase/util'
 export const Page = () => {
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
+  const [confirmPassword, setConfirmPassword] = useState<string>('')
+
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const toast = useToast()
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     setIsLoading(true)
     e.preventDefault()
+
     try {
       const auth = getAuth()
       const userCredential = await createUserWithEmailAndPassword(
@@ -87,11 +90,22 @@ export const Page = () => {
                 }}
               />
             </FormControl>
+            <FormControl>
+              <FormLabel>パスワード(確認用)</FormLabel>
+              <Input
+                type={'confirmPassword'}
+                name={'confirmPassword'}
+                value={confirmPassword}
+                onChange={(e) => {
+                  setConfirmPassword(e.target.value)
+                }}
+              />
+            </FormControl>
           </Box>
         </Grid>
         <Spacer height={4} aria-hidden />
         <Center>
-          <Button type={'submit'} isLoading={isLoading}>
+          <Button type={'submit'} colorScheme="red" isLoading={isLoading}>
             アカウントを作成
           </Button>
         </Center>
