@@ -12,13 +12,15 @@ import {
   Spacer,
   useToast,
 } from '@chakra-ui/react'
-import { FormEvent, useState } from 'react'
+import { FormEvent, ReactElement, useState } from 'react'
 import {
   createUserWithEmailAndPassword,
   getAuth,
   sendEmailVerification,
 } from 'firebase/auth'
 import { FirebaseError } from '@firebase/util'
+import MainLayout from '@src/components/layouts/main/main'
+import RootLayout from '@src/components/layouts/root/root'
 
 export const Page = () => {
   const [email, setEmail] = useState<string>('')
@@ -112,6 +114,10 @@ export const Page = () => {
       </chakra.form>
     </Container>
   )
+}
+
+Page.getLayout = function getLayout(page: ReactElement) {
+  return <RootLayout>{page}</RootLayout>
 }
 
 export default Page
