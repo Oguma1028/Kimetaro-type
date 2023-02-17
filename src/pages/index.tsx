@@ -1,8 +1,9 @@
-import type { NextPage } from 'next'
 import { Box, Button, Container, VStack } from '@chakra-ui/react'
 import Link from 'next/link'
+import RootLayout from '@src/components/layouts/root/root'
+import type { ReactElement } from 'react'
 
-const Page: NextPage = () => {
+export const Page = () => {
   return (
     <Container>
       <Box>
@@ -22,6 +23,10 @@ const Page: NextPage = () => {
       </Box>
     </Container>
   )
+}
+
+Page.getLayout = function getLayout(page: ReactElement) {
+  return <RootLayout>{page}</RootLayout>
 }
 
 export default Page

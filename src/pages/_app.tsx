@@ -1,10 +1,21 @@
 import type { AppProps } from 'next/app'
 import { ChakraProvider } from '@chakra-ui/react'
 import { initializeFirebaseApp } from '@src/lib/firebase/firebase'
+import type { ReactElement, ReactNode } from 'react'
+import type { NextPage } from 'next'
+
+export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+  getLayout?: (page: ReactElement) => ReactNode
+}
+
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout
+}
 
 initializeFirebaseApp()
-function MyApp({ Component, pageProps }: AppProps) {
-  return (
+export function MyApp({ Component, pageProps }: AppPropsWithLayout) {
+  const getLayout = Component.getLayout ?? ((page) => page)
+  return getLayout(
     <ChakraProvider>
       <Component {...pageProps} />
     </ChakraProvider>

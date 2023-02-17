@@ -12,9 +12,10 @@ import {
   Spacer,
   useToast,
 } from '@chakra-ui/react'
-import { FormEvent, useState } from 'react'
+import { FormEvent, ReactElement, useState } from 'react'
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
 import { FirebaseError } from '@firebase/util'
+import RootLayout from '@src/components/layouts/root/root'
 
 export const Page = () => {
   const [email, setEmail] = useState<string>('')
@@ -35,7 +36,6 @@ export const Page = () => {
         status: 'success',
         position: 'top',
       })
-      //TODO: ログイン後のページに遷移の処理を書く
     } catch (e) {
       toast({
         title: 'エラーが発生しました。',
@@ -90,6 +90,10 @@ export const Page = () => {
       </chakra.form>
     </Container>
   )
+}
+
+Page.getLayout = function getLayout(page: ReactElement) {
+  return <RootLayout>{page}</RootLayout>
 }
 
 export default Page
