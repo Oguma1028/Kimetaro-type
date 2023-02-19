@@ -16,12 +16,14 @@ import { FormEvent, ReactElement, useState } from 'react'
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
 import { FirebaseError } from '@firebase/util'
 import RootLayout from '@src/components/layouts/root/root'
+import { useRouter } from 'next/router'
 
 export const Page = () => {
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const toast = useToast()
+  const router = useRouter()
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     setIsLoading(true)
@@ -29,6 +31,7 @@ export const Page = () => {
     try {
       const auth = getAuth()
       await signInWithEmailAndPassword(auth, email, password)
+      router.push('/top')
       setEmail('')
       setPassword('')
       toast({
