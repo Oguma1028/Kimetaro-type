@@ -1,6 +1,6 @@
 import { Box, Button, Container, VStack } from '@chakra-ui/react'
 import Link from 'next/link'
-import RootLayout from '@src/components/layouts/root/root'
+import RootLayout from '@src/layouts/root'
 import type { ReactElement } from 'react'
 
 export const Page = () => {

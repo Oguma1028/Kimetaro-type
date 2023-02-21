@@ -1,6 +1,6 @@
 import type { AppProps } from 'next/app'
 import { ChakraProvider } from '@chakra-ui/react'
-import { initializeFirebaseApp } from '@src/lib/firebase/firebase'
+import { initializeFirebaseApp } from '@src/services/firebase'
 import type { ReactElement, ReactNode } from 'react'
 import type { NextPage } from 'next'
 

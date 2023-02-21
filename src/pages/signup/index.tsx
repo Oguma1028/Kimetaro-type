@@ -19,7 +19,8 @@ import {
   sendEmailVerification,
 } from 'firebase/auth'
 import { FirebaseError } from '@firebase/util'
-import RootLayout from '@src/components/layouts/root/root'
+import RootLayout from '@src/layouts/root'
+import { useRouter } from 'next/router'
 
 export const Page = () => {
   const [email, setEmail] = useState<string>('')
@@ -28,6 +29,7 @@ export const Page = () => {
 
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const toast = useToast()
+  const router = useRouter()
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     setIsLoading(true)
@@ -48,6 +50,7 @@ export const Page = () => {
         status: 'success',
         position: 'top',
       })
+      router.push('/top')
     } catch (e) {
       toast({
         title: 'エラーが発生しました。',
@@ -94,7 +97,7 @@ export const Page = () => {
             <FormControl>
               <FormLabel>パスワード(確認用)</FormLabel>
               <Input
-                type={'confirmPassword'}
+                type={'password'}
                 name={'confirmPassword'}
                 value={confirmPassword}
                 onChange={(e) => {

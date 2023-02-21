@@ -15,7 +15,7 @@ import {
 import { FormEvent, ReactElement, useState } from 'react'
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
 import { FirebaseError } from '@firebase/util'
-import RootLayout from '@src/components/layouts/root/root'
+import RootLayout from '@src/layouts/root'
 import { useRouter } from 'next/router'
 
 export const Page = () => {

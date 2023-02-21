@@ -1,9 +1,9 @@
-import MainLayout from '@src/components/layouts/main/main'
-import RootLayout from '@src/components/layouts/root/root'
-import Map from './_map'
+import MainLayout from '@src/layouts/main'
+import RootLayout from '@src/layouts/root'
+import Map from './Map'
 import type { ReactElement } from 'react'
 import { Container, Heading, Text } from '@chakra-ui/react'
-import Form from './_form'
+import Form from './SearchForm'
 
 const Page = () => {
   return (
